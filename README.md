@@ -18,3 +18,6 @@ requests
 colorma
 
 ---
+
+## Note
+this is my first push, i haven't made any debug yet
