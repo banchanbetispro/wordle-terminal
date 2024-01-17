@@ -11,24 +11,39 @@ def greet():
 def main():
     greet()
     win = False
-    while not win:
-        randomWord = random.choice(data).split()
-        wordsArray = randomWord + [''] * random.randint(3,9)
-        tries = 1
+    randomWord = random.choice(data)
+    wordsArray = []
+    tries = 1
+    #print(wordsArray)
+    print("The secret word has", len(randomWord), "letters")
+    while not win and tries < 7:
         userPrompt = input("Choose a word: ")
-        for char in userPrompt:
-            if char not in randomWord:
-                wordsArray[tries] += (COLORS[0] + char)
-            elif userPrompt.index(char) != randomWord.index(char):
-                wordsArray[tries] += (COLORS[1] + char)
-            else:
-                wordsArray[tries] += (COLORS[2] + char)
+        #print(len(userPrompt),len(randomWord),randomWord)
+        if len(userPrompt) != len(randomWord):
+            print("Invalid input")
+        else:
+            if userPrompt == randomWord:
                 win = True
-        if wordsArray[-1]:
+            else:
+                array = []
+                if userPrompt == randomWord:
+                    array.append(COLORS[2] + userPrompt)
+                    break
+                for charIndex in range(len(userPrompt)):
+                    if userPrompt[charIndex] not in randomWord:
+                        array.append(COLORS[0] + userPrompt[charIndex])
+                    elif userPrompt[charIndex] != randomWord[charIndex]:
+                        array.append(COLORS[1] + userPrompt[charIndex])
+                    else:
+                        array.append(COLORS[2] + userPrompt[charIndex])
+                #print(array)
+                wordsArray.append("".join(array))
+                tries += 1
+        if win == True:
             break
-        for i in range(1,len(wordsArray)):
-            print(wordsArray[i])
-    print("You won!" if win else "You lost :(")
+        for i in wordsArray[1:]:
+            print(i)
+    print("You won!" if win else f"You lost :(, the given word was {randomWord}")
 
 if __name__ == "__main__":
     main()
