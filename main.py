@@ -43,6 +43,7 @@ def main():
             break
         for i in wordsArray[1:]:
             print(i)
+            print("-"*len(randomWord))
     print("You won!" if win else f"You lost :(, the given word was {randomWord}")
 
 if __name__ == "__main__":
