@@ -41,7 +41,7 @@ def main():
                 tries += 1
         if win == True:
             break
-        for i in wordsArray[1:]:
+        for i in wordsArray:
             print(i)
             print("-"*len(randomWord))
     print("You won!" if win else f"You lost :(, the given word was {randomWord}")
